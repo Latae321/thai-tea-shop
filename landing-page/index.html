@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ชาไทยริมทาง - สั่งล่วงหน้าแวะรับหน้าร้าน</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">ชาไทยริมทาง</a>
+    <nav>
+      <a href="index.html">หน้าแรก</a>
+      <a href="product.html">เมนูทั้งหมด</a>
+      <a href="order.html" class="btn" style="padding: 6px 16px; font-size: 0.9rem;">สั่งซื้อทันที</a>
+      <a href="admin.html">แอดมิน</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>ชาไทยสกัดสด เข้มข้นถึงใจ<br>สั่งล่วงหน้าผ่านเว็บ แวะรับได้ทันที!</h1>
+      <p>ไม่ต้องเสียเวลารอคิว ชาไทยรสชาติหอมมันพร้อมเสิร์ฟรอคุณที่หน้าร้าน</p>
+      
+      <!-- แสดงรูปหน้าร้าน -->
+      <div style="margin: 20px auto 30px; max-width: 700px; overflow: hidden; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+        <img src="images/hero.jpg" alt="บรรยากาศหน้าร้าน" style="width: 100%; height: auto; display: block;" onerror="this.style.display='none'">
+      </div>
+
+      <a href="product.html" class="btn" style="font-size: 1.1rem; padding: 14px 36px;">เลือกดูเมนูเครื่องดื่ม</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <h2 style="text-align: center; margin-top: 20px;">เลือกสไตล์ชาไทยตามอารมณ์</h2>
+    <div class="mood-grid">
+      <a href="product.html?mood=fresh" class="mood-card">
+        <h3>เข้มข้นกลมกล่อม</h3>
+        <p>ชาไทยสูตรดั้งเดิม หอมเข้มมัน</p>
+      </a>
+      <a href="product.html?mood=relax" class="mood-card">
+        <h3>นุ่มนวลสุขภาพดี</h3>
+        <p>จับคู่กับนมโอ๊ต สบายท้อง</p>
+      </a>
+      <a href="product.html?mood=focus" class="mood-card">
+        <h3>สดชื่นตื่นเต็มตา</h3>
+        <p>ชาไทยดำและชาไทยมะนาว</p>
+      </a>
+      <a href="product.html?mood=romance" class="mood-card">
+        <h3>หวานมันจัดเต็ม</h3>
+        <p>ท็อปด้วยครีมชีสนุ่มเค็มมัน</p>
+      </a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
