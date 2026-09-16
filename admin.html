@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายการคำสั่งซื้อ (Admin) - ชาไทยสั่งล่วงหน้า</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">ชาไทยริมทาง (ระบบหลังบ้าน)</a>
+    <nav>
+      <a href="index.html">หน้าแรก</a>
+      <a href="product.html">เมนูเครื่องดื่ม</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1 style="margin-top: 40px;">รายการคำสั่งซื้อทั้งหมด</h1>
+    <p style="color: var(--text-muted);">รายการจะอัปเดตอัตโนมัติตามข้อมูลใน Google Sheet</p>
+
+    <div class="table-container">
+      <table id="ordersTable">
+        <thead>
+          <tr>
+            <th>วัน-เวลา</th>
+            <th>ชื่อลูกค้า</th>
+            <th>เบอร์โทร / Line</th>
+            <th>รายการ</th>
+            <th>ยอดรวม</th>
+            <th>หมายเหตุ / เวลารับ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ข้อมูลจาก Google Sheet จะมาแสดงตรงนี้ -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
