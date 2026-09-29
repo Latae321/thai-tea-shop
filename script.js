@@ -1,8 +1,12 @@
 // ==========================================
-// ⚠️ นำ URL ที่ได้จากขั้นตอน Apps Script มาวางตรงนี้
+// ⚠️ ใส่ URL และข้อมูล Telegram ของคุณตรงนี้
 // ==========================================
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyJHxlHHw1bhtRJKWHGBhlyHwr3mcJtXVmyY9Z07mD_1zhCKkovf6ifw3OkCLU0aC7F4Q/exec';
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ55JySkM6SawmFLQM7W-GU9gUfgmUQDGiBxUyG6OUtsRfnlZV8uOF2k9SYYEyCiR-p3DhQZmtQH9iQ/pub?output=csv';
+
+// 🔹 นำ Token และ Chat ID ของคุณมาวางใส่ในอัญประกาศ ' ' ด้านล่างนี้
+const TELEGRAM_BOT_TOKEN = '8935842041:AAGK_xVUa_XkLEPoP_sX16sUWRaOcMjp82I';
+const TELEGRAM_CHAT_ID = '@Latae321';
 
 const defaultProducts = [
   {
@@ -166,7 +170,7 @@ function setupOrderForm(products) {
   updatePreview();
 
   const form = document.getElementById('orderForm');
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const payload = {
@@ -177,6 +181,33 @@ function setupOrderForm(products) {
       note: document.getElementById('note').value
     };
 
+    // 📩 ส่งข้อความแจ้งเตือนเข้า Telegram ทันทีเมื่อกดสั่งซื้อ
+    if (TELEGRAM_BOT_TOKEN !== 'ใส่_BOT_TOKEN_ของคุณตรงนี้' && TELEGRAM_CHAT_ID !== 'ใส่_CHAT_ID_ของคุณตรงนี้') {
+      const telegramMessage = 
+        `🛍️ <b>มีรายการสั่งซื้อใหม่!</b>\n` +
+        `---------------------------\n` +
+        `👤 <b>ชื่อลูกค้า:</b> ${payload.customerName}\n` +
+        `📞 <b>ติดต่อ:</b> ${payload.contact}\n` +
+        `🍹 <b>รายการ:</b> ${payload.items}\n` +
+        `💰 <b>ยอดรวม:</b> ฿${payload.total}\n` +
+        `📝 <b>หมายเหตุ/เวลารับ:</b> ${payload.note || '-'}`;
+
+      try {
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: telegramMessage,
+            parse_mode: 'HTML'
+          })
+        });
+      } catch (err) {
+        console.error('ไม่สามารถส่งข้อความเข้า Telegram ได้:', err);
+      }
+    }
+
+    // 📊 บันทึกข้อมูลลง Google Sheet ตามระบบเดิม
     fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       body: JSON.stringify(payload)
